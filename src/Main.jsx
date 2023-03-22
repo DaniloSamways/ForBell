@@ -14,7 +14,7 @@ export default function Main() {
         .then(response => response.json())
         .then(data => setPhrase(data.phrase))
     }
-  }, []);
+  }, [id]);
 
   var noButtonTranslate = 0
   const noButton = useRef()
