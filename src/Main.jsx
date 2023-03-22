@@ -10,7 +10,7 @@ export default function Main() {
 
   useEffect(() => {
     if (id) {
-      fetch(`http://localhost:3333/${id}`)
+      fetch(`https://for-bell-api.vercel.app/${id}`)
         .then(response => response.json())
         .then(data => setPhrase(data.phrase))
     }

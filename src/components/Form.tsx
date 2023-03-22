@@ -17,9 +17,9 @@ export default function Form() {
       body: `{"phrase": "${phrase}"}`
     };
 
-    await fetch('http://localhost:3333/', options)
+    await fetch('https://for-bell-api.vercel.app/', options)
       .then(response => response.json())
-      .then(response => setLink("http://localhost:3000/" + response.id))
+      .then(response => setLink("https://with-love-for-bell.vercel.app/" + response.id))
   }
 
   return (
