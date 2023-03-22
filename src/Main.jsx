@@ -1,8 +1,21 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useParams } from "react-router-dom";
 import emoji from "./assets/emoji.png";
 import health from "./assets/health.png";
 
-function App() {
+export default function Main() {
+  const { id } = useParams();
+
+  const [phrase, setPhrase] = useState("");
+
+  useEffect(() => {
+    if (id) {
+      fetch(`http://localhost:3333/${id}`)
+        .then(response => response.json())
+        .then(data => setPhrase(data.phrase))
+    }
+  }, []);
+
   var noButtonTranslate = 0
   const noButton = useRef()
   const [currentAnswer, setCurrentAnswer] = useState(0);
@@ -57,22 +70,32 @@ function App() {
             </>
           ) : (
             <div className="flex flex-col items-center gap-4">
-              <p className="font-semibold" align="center">"
-                <b>Meu amor por você é igual um círculo, 360º"</b> - Danilo
-              </p>
+              {!id ? (
+                <>
+                  <p className="font-semibold" align="center">"
+                    <b>Meu amor por você é igual um círculo, 360º"</b> - Danilo
+                  </p>
 
-              <p align="center">Te amo Bel, minha princesinha gatinha</p>
+                  <p align="center">Te amo Bel, minha princesinha gatinha</p>
 
-              <img src={health} alt="" width={200} />
+                  <img src={health} alt="" width={200} />
 
-              <p className="mt-10">Made with 🤍 by Danilo</p>
+                  <p className="mt-10">Made with 🤍 by <a className="font-semibold text-red-300" href="https://www.instagram.com/danilo.samw/">@danilo.samw</a></p>
+                </>
+              ) : (
+                <>
+                  <p className="font-semibold max-w-md" align="center">
+                    <b>{phrase}</b>
+                  </p>
+                  <img src={health} alt="" width={200} />
+
+                  <p className="mt-10">Made with 🤍 by <a className="font-semibold text-red-300" href="https://www.instagram.com/danilo.samw/">@danilo.samw</a></p>
+                </>
+              )}
             </div>
-          )
-          }
+          )}
         </div>
       </div>
-    </div>
+    </div >
   );
 }
-
-export default App;
