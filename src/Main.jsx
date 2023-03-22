@@ -66,7 +66,6 @@ export default function Main() {
                   Não
                 </button>
               )}
-
             </>
           ) : (
             <div className="flex flex-col items-center gap-4">
