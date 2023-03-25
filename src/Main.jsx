@@ -7,12 +7,13 @@ export default function Main() {
   const { id } = useParams();
 
   const [phrase, setPhrase] = useState("");
+  const [question, setQuestion] = useState("");
 
   useEffect(() => {
     if (id) {
       fetch(`https://for-bell-api.vercel.app/${id}`)
         .then(response => response.json())
-        .then(data => setPhrase(data.phrase))
+        .then(data => { setPhrase(data.phrase); setQuestion(data.question) })
     }
   }, [id]);
 
@@ -23,7 +24,7 @@ export default function Main() {
     "Você está disposta a responder algumas perguntas?",
     "Você responderá com total sinceridade?",
     "Tem certeza de que deseja continuar?",
-    "Namora comigo? 💍"
+    !question ? "Namora comigo? 💍" : question,
   ]
 
   const handleYesAnswerButton = () => {
