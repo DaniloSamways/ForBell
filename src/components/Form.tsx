@@ -23,7 +23,7 @@ export default function Form() {
     const options = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: `{"phrase": "${data.phrase}", "answer": "${data.question}"}`
+      body: `{"phrase": "${data.phrase}", "question": "${data.question}"}`
     };
 
     await fetch('https://for-bell-api.vercel.app/', options)
@@ -43,7 +43,7 @@ export default function Form() {
               className="placeholder:text-red-300 border-2 border-gray-300 rounded-md px-4 py-1 w-96 bg-inherit"
               type="text"
               value={data.question}
-              name="answer"
+              name="question"
               onChange={handleOnChange}
             />
           </div>
