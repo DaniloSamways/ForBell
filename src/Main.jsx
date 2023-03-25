@@ -13,7 +13,7 @@ export default function Main() {
     if (id) {
       fetch(`https://for-bell-api.vercel.app/${id}`)
         .then(response => response.json())
-        .then(data => { setPhrase(data.phrase); setQuestion(data.question) })
+        .then(data => { setPhrase(data.phrase); setQuestion(data.question); })
     }
   }, [id]);
 
